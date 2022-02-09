@@ -1,0 +1,14 @@
+{
+    "creds": {
+        "endpoint": "http://10.87.90.100:5000/v3",
+        "username": "cn2-os-dev",
+        "password": "BmQ6YErLjTAyq6oA",
+        "domain_name": "Default",
+        "tenant_name": "cn2-os-dev",
+        "tenant_id": "ab7acb7edcae42fa9cbd0e714ed8138a",
+        "region": "RegionOne"
+    },
+    "cluster_name":"ocp-1cf8vi",
+    "offline_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJhZDUyMjdhMy1iY2ZkLTRjZjAtYTdiNi0zOTk4MzVhMDg1NjYifQ.eyJpYXQiOjE2MzY2Mjc4NTksImp0aSI6ImI3ZDk0NmVjLTA1ZjktNGM4Zi1iNWRmLWQ0Y2FmZmRlMjgxMSIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpjbjItY2ljZCIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiYTBlODE4ZjAtYzBkZi00YmE4LTgyNGMtNzY4ODYxMDY5NmUxIiwic2Vzc2lvbl9zdGF0ZSI6IjM4MTQzMmVjLWVlOGQtNDU1ZC04Yjk0LWNjMTg2YjA3NGFlMCIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIn0.LgCgXcmbZbrhBZajNzvL_gLEGKdr51lN1hBBzy777X0",
+    "ai_url": ["http://10.87.88.2/api/assisted-install","http://10.87.88.50/api/assisted-install"]
+}

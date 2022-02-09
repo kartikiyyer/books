@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# No need to add extension to file if above line is specified.
+
+print 'Using environment python to figure out the python.'
+import platform
+
+print platform.python_version()
+
+try:
+    raise Exception
+except Exception as e:
+    print 'Hi'
+    print str(e)
