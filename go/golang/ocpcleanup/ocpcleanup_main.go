@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	contents, err := ioutil.ReadFile("../config.json")
+	contents, err := ioutil.ReadFile("config.json")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

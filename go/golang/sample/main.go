@@ -9,11 +9,13 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
 
 	xj "github.com/basgys/goxml2json"
+	yaml "gopkg.in/yaml.v2"
 )
 
 func parseHtmlTemplate() {
@@ -167,6 +169,63 @@ func xmlTojson() {
 	// {"hello": "world"}
 }
 
+// Get certificates from kube config file
+func getCertificate() (string, error) {
+	kubeconfig := "/Users/kiyyer/Documents/Projects/CN2/kubeconfig/config_117"
+	var certificate string
+	yamlFileContent, err := ioutil.ReadFile(kubeconfig)
+	if err != nil {
+		return certificate, err
+	}
+
+	type Certificate struct {
+		ClientCertificateData string `yaml:"client-certificate-data"`
+		ClientKeyData         string `yaml:"client-key-data"`
+	}
+
+	type User struct {
+		Certificate Certificate `yaml:"user"`
+	}
+	type KubeConfig struct {
+		Users []User `yaml:"users"`
+	}
+	var kc KubeConfig
+
+	err = yaml.Unmarshal(yamlFileContent, &kc)
+	if err != nil {
+		return certificate, err
+	}
+
+	if len(kc.Users) > 0 {
+		clientCertificateBytes, _ := base64.URLEncoding.DecodeString(kc.Users[0].Certificate.ClientCertificateData)
+		clientCertificate := string(clientCertificateBytes)
+		// fmt.Println(clientCertificate)
+		clientKeyBytes, _ := base64.URLEncoding.DecodeString(kc.Users[0].Certificate.ClientKeyData)
+		clientKey := string(clientKeyBytes)
+		// fmt.Println(clientKey)
+		clientCertificateAndKey := fmt.Sprintf("%s%s", url.PathEscape(clientCertificate), url.PathEscape(clientKey))
+		certificate = fmt.Sprintf("Cert=\"%s\"", clientCertificateAndKey)
+	}
+
+	return certificate, nil
+}
+
+func populateYaml() {
+	kubeconfigContents, _ := os.ReadFile("kubeconfig.yaml")
+	t, _ := template.ParseFiles("userbinding.yaml")
+
+	values := map[string]string{
+		"Clusteruuid": "1234",
+		"Kubeconfig":  string(kubeconfigContents),
+	}
+
+	var s strings.Builder
+	t.Execute(&s, values)
+
+	fmt.Println(s.String())
+
+}
+
 func main() {
 	fmt.Println("hi")
 	// parseHtmlTemplate()
@@ -176,5 +235,7 @@ func main() {
 	// httpMethods()
 	// readWriteFile()
 	// esSearch()
-	xmlTojson()
+	//xmlTojson()
+	// fmt.Println(getCertificate())
+	populateYaml()
 }

@@ -1,0 +1,18 @@
+apiVersion: auth.juniper.net/v1
+kind: UserBinding
+metadata:
+  labels:
+    auth.juniper.net/admin: c3vwzxjay24ylm5lda
+  name: y24ydgvzdhvzzxjab3v0bg9vay5jb20 # => cn2testuser@outlook.com
+spec:
+  admin: Super Admin
+  hash: $2a$10$jMA.p7LLnYqunwggOYDZUeoXw6vLLk0hMKV2bBYws6GtqPxx13TW. # => c0ntrail123
+  clusters:
+  - clustername: distributed-cluster1
+    clusteruuid: {{ .Clusteruuid }}
+    # servicetoken: {{ .Servicetoken }}
+    kubeconfig: |- 
+      {{ .Kubeconfig }}
+  email: cn2testuser@outlook.com
+  provider: local
+  role: admin
